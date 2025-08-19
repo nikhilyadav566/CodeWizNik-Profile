@@ -27,24 +27,40 @@ const typeLoop = () => {
 document.addEventListener("DOMContentLoaded", typeLoop);
 
 // Contact Form
+// Contact Form
 const contactForm = document.getElementById("contactForm");
 const formMessage = document.getElementById("formMessage");
 
-contactForm.addEventListener("submit", async (e)=>{
+// ✅ Auto-detect API base URL
+const API_BASE_URL = window.location.hostname === "localhost" 
+  ? "http://localhost:5000" 
+  : "https://your-backend-name.onrender.com"; // 🔗 Replace with your Render backend URL
+
+contactForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+
   const formData = {
     name: contactForm.name.value,
     email: contactForm.email.value,
     message: contactForm.message.value
   };
+
   try {
-    const response = await fetch("http://localhost:5000/api/contact", {
+    const response = await fetch(`${API_BASE_URL}/api/contact`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData)
     });
+
     const data = await response.json();
-    if(data.success){ formMessage.textContent = data.message; contactForm.reset(); }
-    else { formMessage.textContent = "❌ Something went wrong!"; }
-  } catch(err){ console.error(err); formMessage.textContent = "❌ Server error!"; }
+    if (data.success) {
+      formMessage.textContent = data.message;
+      contactForm.reset();
+    } else {
+      formMessage.textContent = "❌ Something went wrong!";
+    }
+  } catch (err) {
+    console.error(err);
+    formMessage.textContent = "❌ Server error!";
+  }
 });
