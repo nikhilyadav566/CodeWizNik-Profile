@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
+const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const app = express();
@@ -27,12 +28,35 @@ const contactSchema = new mongoose.Schema({
 });
 const Contact = mongoose.model("Contact", contactSchema);
 
-// Contact Form API
+// Contact Form API with email notification
 app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, message } = req.body;
+
+    // Save to MongoDB
     const newContact = new Contact({ name, email, message });
     await newContact.save();
+
+    // Nodemailer transporter
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS // your App Password
+      }
+    });
+
+    // Email content
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, // send to yourself
+      subject: `New Contact Form Submission from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+
     res.status(201).json({ success: true, message: "Message sent successfully!" });
   } catch (err) {
     console.error(err);
@@ -92,7 +116,7 @@ app.get("/dashboard", async (req, res) => {
   }
 });
 
-// ✅ Fallback: send index.html for unknown routes (important for Render)
+// Fallback: send index.html for unknown routes (important for Render)
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
