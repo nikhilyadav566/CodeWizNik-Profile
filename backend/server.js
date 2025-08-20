@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve frontend files (absolute path for reliability)
+// Serve frontend files
 app.use(express.static(path.join(__dirname, "../frontend")));
 
 // Connect MongoDB
@@ -35,11 +35,12 @@ app.post("/api/contact", async (req, res) => {
     await newContact.save();
     res.status(201).json({ success: true, message: "Message sent successfully!" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ success: false, message: "Server error!" });
   }
 });
 
-// Admin Dashboard (password protected)
+// Admin Dashboard
 app.get("/dashboard", async (req, res) => {
   const password = req.query.password;
   if (password !== process.env.ADMIN_PASSWORD) {
@@ -89,6 +90,11 @@ app.get("/dashboard", async (req, res) => {
   } catch (err) {
     res.status(500).send("Server error!");
   }
+});
+
+// ✅ Fallback: send index.html for unknown routes (important for Render)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
 // Start Server
