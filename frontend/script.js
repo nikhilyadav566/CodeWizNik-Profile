@@ -27,14 +27,13 @@ const typeLoop = () => {
 document.addEventListener("DOMContentLoaded", typeLoop);
 
 // Contact Form
-// Contact Form
 const contactForm = document.getElementById("contactForm");
 const formMessage = document.getElementById("formMessage");
 
 // ✅ Auto-detect API base URL
 const API_BASE_URL = window.location.hostname === "localhost" 
   ? "http://localhost:5000" 
-  : "https://codewiznik-profile-backend.onrender.com"; // 🔗 Replace with your Render backend URL
+  : "https://codewiznik-profile.onrender.com"; // 🔗 Replace with your Render backend URL
 
 contactForm.addEventListener("submit", async (e) => {
   e.preventDefault();
