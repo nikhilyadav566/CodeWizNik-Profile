@@ -8,7 +8,17 @@ require("dotenv").config();
 const app = express();
 
 // Middleware
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5000", 
+  "https://codewiznik-profile.onrender.com"
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Serve frontend files

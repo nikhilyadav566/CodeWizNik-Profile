@@ -83,34 +83,46 @@ const io = new IntersectionObserver(entries=>{
 revealEls.forEach(el=>io.observe(el));
 
 // ===== Contact form demo (front-end only) =====
+// ===== Contact form real API integration =====
+const API_BASE_URL = window.location.hostname === "localhost"
+  ? "http://localhost:5000"
+  : "https://codewiznik-profile.onrender.com"; // ✅ Render backend URL
+
 const contactForm = document.getElementById("contactForm");
 const formMsg = document.getElementById("formMessage");
-contactForm.addEventListener("submit", async (e)=>{
+
+contactForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+
   const { name, email, message } = Object.fromEntries(new FormData(contactForm).entries());
 
-  if(!name.trim() || !email.trim() || !message.trim()){
+  if (!name.trim() || !email.trim() || !message.trim()) {
     formMsg.textContent = "⚠ All fields are required before sending!";
     formMsg.style.color = "#f59e0b";
-    formMsg.classList.add("fade-slide");
     return;
   }
 
-  // Sending message
+  // Show loading
   formMsg.textContent = "⏳ Sending your message, please wait...";
   formMsg.style.color = "#3b82f6";
-  formMsg.classList.add("fade-slide");
 
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const response = await fetch(`${API_BASE_URL}/api/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message })
+    });
 
-   // Success
-    formMsg.innerHTML = "🎉 <span class='success-glow'>Your message has been delivered successfully!</span>";
-    formMsg.classList.add("fade-slide");
-    contactForm.reset();
+    const result = await response.json();
+
+    if (result.success) {
+      formMsg.innerHTML = "🎉 <span class='success-glow'>Your message has been delivered successfully!</span>";
+      formMsg.style.color = "#22c55e";
+      contactForm.reset();
+    } else {
+      formMsg.innerHTML = `❌ <span style='color:#ef4444;'>${result.message}</span>`;
+    }
   } catch (error) {
-    // Failure
     formMsg.innerHTML = "❌ <span style='color:#ef4444;'>Oops! Something went wrong. Please try again!</span>";
-    formMsg.classList.add("fade-slide");
   }
 });
