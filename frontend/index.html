@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- ✅ START SEO META TAGS -->
-  <title>CodeWizNik - Nikhil Yadav | Developer Profile</title>
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <meta name="description" content="Hey there! I'm CodeWizNik (Nikhil Yadav) — a MERN Stack Developer and YouTube content creator. This is my official profile page." />
-  <meta name="keywords" content="CodeWizNik, Nikhil Yadav, Developer, Profile, GitHub, YouTube, MERN, Tech Creator" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CodeWizNik — Nikhil Yadav | MERN Developer</title>
+  <meta name="description" content="Nikhil Yadav (CodeWizNik) — MERN Stack Developer & Tech Creator" />
   <meta name="author" content="Nikhil Yadav" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="CodeWizNik - Developer Profile" />
@@ -15,86 +12,172 @@
   <meta property="og:url" content="https://codewiznik-profile.onrender.com" />
   <meta property="og:image" content="https://codewiznik-profile.onrender.com/banner.png" />
   <link rel="canonical" href="https://codewiznik-profile.onrender.com" />
-  <!-- ✅ END SEO META TAGS -->
+  <link rel="icon" href="assets/images/favicon.png" />
+  <!-- Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="wrapper">
-    <!-- Circles -->
-    <div class="circle1"></div>
-    <div class="circle2"></div>
-    <div class="container">
-      <!-- Image -->
-      <div><img src="./images/myphoto.png" alt="mypic" /></div>
+  <!-- Sticky Navbar -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-container">
+      <a href="#home" class="brand" aria-label="Go to Home">CodeWizNik</a>
 
-      <!-- Heading -->
-      <div class="userName">
-        <h1>Nikhil Yadav</h1>
-      </div>
+      <nav class="site-nav" id="navMenu" aria-label="Primary">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a class="btn resume" href="assets/nikhil-resume.pdf" download>
+          <i class="fa-solid fa-file-arrow-down"></i><span>Resume</span>
+        </a>
+      </nav>
 
-      <!-- Designation -->
-      <div class="designation">
-        <span id="typing"></span>
-      </div>
-
-      <!-- Button Group -->
-      <div class="btnGroup">
-        <button class="btn btnShare" onclick="openModal()">
-          <i class="fa-solid fa-share"></i>
-          <div><h3>Let's Connect!</h3></div>
+      <div class="header-actions">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
         </button>
-
-        <button class="btn btnFollow">
-          <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=nikhilyad566"><h3>Follow Me</h3></a>
+        <button class="icon-btn hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
         </button>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- Modal Component -->
-  <div class="modal">
-    <div class="modalHeader">
-      <h1>👍 Let's Connect!</h1>
-      <div class="close-container">
-        <i onclick="closeModal()" class="fa-solid fa-xmark close"></i>
+  <!-- Mobile menu backdrop -->
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <h1 class="reveal-up">
+          Hi, I'm <span class="accent">Nikhil Yadav</span>
+        </h1>
+        <p class="tagline reveal-up" style="--d:120ms;">
+          MERN Stack Developer • Tech Creator • @CodeWizNik
+        </p>
+        <div class="socials reveal-up" style="--d:240ms;">
+          <a href="https://github.com/nikhilyadav566" target="_blank" rel="noopener" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.youtube.com/@CodeWizNik" target="_blank" rel="noopener" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+          <a href="https://instagram.com/codewiz_nik" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+           <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=nikhilyad566" target="_blank" rel="noopener" aria-label="linkedin">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://x.com/YadavNikhil566" target="_blank" rel="noopener" aria-label="twitter">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+        </div>
+        <div class="cta-row reveal-up" style="--d:360ms;">
+          <a class="btn primary" href="#projects"><i class="fa-solid fa-rocket"></i><span>View Projects</span></a>
+          <a class="btn ghost" href="assets/nikhil resume.pdf" download><i class="fa-solid fa-download"></i><span>Download Resume</span></a>
+        </div>
+      </div>
+      <div class="hero-right reveal-up" style="--d:120ms;">
+        <div class="avatar-wrap">
+          <img src="assets/images/myphoto.png" alt="Nikhil Yadav profile photo" />
+        </div>
       </div>
     </div>
-    <div>
-      <h3>Stay Connected 🤝</h3>
-      <div class="iconContainer">
-        <a href="https://www.facebook.com/nikhilyad566/" class="icon" id="facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/nikhilyad566/" class="icon" id="instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://x.com/YadavNikhil566" class="icon" id="twitter"><i class="fa-brands fa-twitter"></i></a>
-        <a href="https://github.com/nikhilyadav566" class="icon" id="github"><i class="fa-brands fa-github"></i></a>
-        <a href="https://www.youtube.com/@CodeWizNik" class="icon" id="youtube"><i class="fa-brands fa-youtube"></i></a>
-      </div>
-      <button class="btn copyBtn" onclick="copyProfileLink()">📋 Copy Profile Link</button>
-    </div>
-  </div>
-
-  <!-- Overlay -->
-  <div class="overlay" onclick="closeModal()"></div>
-
-  <!-- Contact Form -->
-  <section class="contactFormSection">
-    <h2>Get in Touch</h2>
-    <form id="contactForm">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
-      <p id="formMessage"></p>
-    </form>
   </section>
 
-  <!-- Font Awesome -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
-  <script src="script.js"></script>
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title reveal-up">About Me</h2>
+      <p class="section-text reveal-up" style="--d:120ms;">
+        I'm a <strong>MERN stack</strong> developer who loves building clean, fast, and accessible web apps.
+        I also share practical tutorials to help devs learn by doing. I focus on React/Next.js, Node.js APIs,
+        MongoDB, deployment, and developer experience.
+      </p>
+    </div>
+  </section>
 
-  <!-- Stylish Footer -->
-  <footer style="background-color: #111827; color: #9CA3AF; text-align: center; padding: 20px; font-size: 14px; font-family: 'Segoe UI', sans-serif;">
-    © 2025 <a href="https://www.youtube.com/results?search_query=codewiznik" target="_blank" style="color: #38bdf8; text-decoration: none; font-weight: 500;">CodeWizNik</a>. All rights reserved.<br>
-    <span style="font-size: 12px; color: #6B7280;">Crafted with ❤️ for developers & learners</span>
+  <!-- Skills -->
+  <section id="skills" class="section alt">
+    <div class="container">
+      <h2 class="section-title reveal-up">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill reveal-up"><i class="fa-brands fa-html5"></i> HTML</div>
+        <div class="skill reveal-up" style="--d:60ms;"><i class="fa-brands fa-css3-alt"></i> CSS</div>
+        <div class="skill reveal-up" style="--d:120ms;"><i class="fa-brands fa-js"></i> JavaScript</div>
+        <div class="skill reveal-up" style="--d:180ms;"><i class="fa-brands fa-react"></i> React</div>
+        <div class="skill reveal-up" style="--d:240ms;"><i class="fa-brands fa-node"></i> Node.js</div>
+        <div class="skill reveal-up" style="--d:300ms;"><i class="fa-solid fa-database"></i> MongoDB</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title reveal-up">Projects</h2>
+      <div class="project-grid">
+        <article class="project-card reveal-up">
+          <h3>Razorpay UI Clone</h3>
+          <p>Payment UI built with Tailwind and vanilla JS. Smooth animations and responsive layout.</p>
+          <div class="card-actions">
+            <a class="link" href="#" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Live</a>
+            <a class="link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
+          </div>
+        </article>
+        <article class="project-card reveal-up" style="--d:100ms;">
+          <h3>Personal Profile</h3>
+          <p>Portfolio + blog with theme toggle, SEO tags, and accessible components.</p>
+          <div class="card-actions">
+            <a class="link" href="#" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Live</a>
+            <a class="link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
+          </div>
+        </article>
+        <article class="project-card reveal-up" style="--d:200ms;">
+          <h3>DevTools CLI Notes</h3>
+          <p>Guide + snippets for Git, Node, and deployment workflows.</p>
+          <div class="card-actions">
+            <a class="link" href="#" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Live</a>
+            <a class="link" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section alt">
+    <div class="container">
+      <h2 class="section-title reveal-up">Contact Me</h2>
+      <form id="contactForm" class="contact-form reveal-up" style="--d:120ms;" autocomplete="off" novalidate>
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+        <button type="submit" class="btn primary w-full"><i class="fa-regular fa-paper-plane"></i><span>Send Message</span></button>
+        <p id="formMessage" class="form-message" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="foot-left">© 2025 CodeWizNik</div>
+      <div class="foot-socials">
+        <a href="https://github.com/nikhilyadav566" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.youtube.com/@CodeWizNik" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://instagram.com/codewiz_nik" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=nikhilyad566" target="_blank" rel="noopener" aria-label="linkedin"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://x.com/YadavNikhil566" target="_blank" rel="noopener" aria-label="twitter"> <i class="fa-brands fa-twitter"></i></a>
+
+      </div>
+    </div>
   </footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
