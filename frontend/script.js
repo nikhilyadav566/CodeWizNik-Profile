@@ -98,7 +98,7 @@ contactForm.addEventListener("submit", async (e)=>{
 
   // Sending message
   formMsg.textContent = "⏳ Sending your message, please wait...";
-  formMsg.style.color = "#3bf64eff";
+  formMsg.style.color = "#3b82f6";
   formMsg.classList.add("fade-slide");
 
   try {
