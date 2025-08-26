@@ -77,8 +77,8 @@ img{display:block;max-width:100%}
   position: fixed;
   top: 0;
   right: -100%;
-  height: 100vh;
-  width: min(260px, 80%);
+  height: 80vh;
+  width: min(200px, 80%);
   background: rgba(12,16,35,0.98);
   border-left: 1px solid var(--border);
   box-shadow: -24px 0 60px rgba(0,0,0,.45);
