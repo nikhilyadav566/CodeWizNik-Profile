@@ -63,21 +63,63 @@ img{display:block;max-width:100%}
 .icon-btn{background:transparent;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:10px;cursor:pointer}
 .hamburger{display:none}
 
-@media (max-width: 900px){
-  html,body{overflow-x:hidden;}
-  .hamburger{display:inline-flex}
-  .site-nav{
-    position:fixed; top:0; right:-100%; height:100dvh; width:min(160px,78%);
-    background:rgba(12,16,35,.98); border-left:1px solid var(--border); box-shadow: -24px 0 60px rgba(0,0,0,.45);
-    display:flex; flex-direction:column; justify-content:flex-start; padding:92px 20px 20px; gap:16px; transition:right .28s ease; z-index:1001;
+@media (max-width: 900px) {
+   body {
+    overflow-x: hidden;
   }
-  :root.light .site-nav{background:#fff}
-  .site-nav.open{ right:0; }
-  .menu-overlay{
-    position:fixed; inset:0; background:rgba(0,0,0,.45); opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:1000;
+
+  .hamburger {
+    display: inline-flex;
   }
-  .menu-overlay.active{opacity:1; pointer-events:auto;}
+
+  /* Mobile Nav Menu */
+  .site-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh; /* Full viewport height */
+    width: min(240px, 78%); /* Wider menu for easier clicks */
+    background: rgba(12,16,35,0.98);
+    border-left: 1px solid var(--border);
+    box-shadow: -24px 0 60px rgba(0,0,0,.45);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 92px 20px 20px;
+    gap: 16px;
+    transition: right 0.28s ease;
+    z-index: 1001;
+    overflow-y: auto; /* Scrollable if content overflows */
+  }
+
+  :root.light .site-nav {
+    background: #fff;
+  }
+
+  .site-nav.open {
+    right: 0; /* Slide in */
+  }
+
+  /* Menu Overlay */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    opacity: 0;
+    pointer-events: none; /* Disable clicks when inactive */
+    transition: opacity 0.2s ease;
+    z-index: 1000;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto; /* Enable clicks when active */
+  }
 }
+.site-header {
+  z-index: 1002; /* higher than overlay/nav for safety */
+}
+
 
 /* ===== Hero ===== */
 .hero{
