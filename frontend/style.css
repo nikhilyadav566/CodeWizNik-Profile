@@ -74,32 +74,33 @@ img{display:block;max-width:100%}
 
   /* Mobile Nav Menu */
   .site-nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100vh; /* Full viewport height */
-    width: min(240px, 78%); /* Wider menu for easier clicks */
-    background: rgba(12,16,35,0.98);
-    border-left: 1px solid var(--border);
-    box-shadow: -24px 0 60px rgba(0,0,0,.45);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 92px 20px 20px;
-    gap: 16px;
-    transition: right 0.28s ease;
-    z-index: 1001;
-    overflow-y: auto; /* Scrollable if content overflows */
-  }
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: min(260px, 80%);
+  background: rgba(12,16,35,0.98);
+  border-left: 1px solid var(--border);
+  box-shadow: -24px 0 60px rgba(0,0,0,.45);
+  display: none; /* Hide by default */
+  flex-direction: column;
+  padding: 92px 20px 20px;
+  gap: 16px;
+  transition: right 0.3s ease;
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+.site-nav.open {
+  display: flex; /* Show when open */
+  right: 0;
+}
 
   :root.light .site-nav {
     background: #fff;
   }
 
-  .site-nav.open {
-    right: 0; /* Slide in */
-  }
-
+  
   /* Menu Overlay */
   .menu-overlay {
     position: fixed;
