@@ -1,9 +1,12 @@
 # Node modules
+node_modules/
 backend/node_modules/
 frontend/node_modules/
 
 # Environment variables
+.env
 backend/.env
+frontend/.env
 
 # Logs
 *.log
@@ -11,9 +14,22 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Build output
+frontend/build/
+dist/
+
+# Coverage reports
+coverage/
+
 # OS generated files
 .DS_Store
 Thumbs.db
 
-# Optional: build folders if using React/other build tools
-frontend/build/
+# IDE settings
+.vscode/
+.idea/
+
+# Misc
+*.pid
+*.seed
+*.pid.lock

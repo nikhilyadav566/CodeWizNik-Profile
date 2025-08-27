@@ -17,6 +17,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 <body>
   <!-- Sticky Navbar -->
@@ -157,6 +159,7 @@
         <input type="text" name="name" placeholder="Your name" required />
         <input type="email" name="email" placeholder="Your email" required />
         <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+        <div class="g-recaptcha" data-sitekey="6LckX7QrAAAAAAiJIlCIxLSl9yUTIPbeHcPfUfHb"></div>
         <button type="submit" class="btn primary w-full"><i class="fa-regular fa-paper-plane"></i><span>Send Message</span></button>
         <p id="formMessage" class="form-message" aria-live="polite"></p>
       </form>

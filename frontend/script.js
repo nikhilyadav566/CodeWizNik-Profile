@@ -94,35 +94,44 @@ const formMsg = document.getElementById("formMessage");
 contactForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const { name, email, message } = Object.fromEntries(new FormData(contactForm).entries());
-
-  if (!name.trim() || !email.trim() || !message.trim()) {
-    formMsg.textContent = "⚠ All fields are required before sending!";
+  const token = grecaptcha.getResponse();
+  if (!token) {
+    formMsg.textContent = "⚠ Please complete the reCAPTCHA!";
     formMsg.style.color = "#f59e0b";
     return;
   }
 
-  // Show loading
-  formMsg.textContent = "⏳ Sending your message, please wait...";
+  const { name, email, message } = Object.fromEntries(new FormData(contactForm).entries());
+
+  if (!name.trim() || !email.trim() || !message.trim()) {
+    formMsg.textContent = "⚠ All fields are required!";
+    formMsg.style.color = "#f59e0b";
+    return;
+  }
+
+  formMsg.textContent = "⏳ Sending your message...";
   formMsg.style.color = "#3b82f6";
 
   try {
     const response = await fetch(`${API_BASE_URL}/api/contact`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, message })
+      body: JSON.stringify({ name, email, message, token })
     });
 
     const result = await response.json();
 
     if (result.success) {
-      formMsg.innerHTML = "🎉 <span class='success-glow'>Your message has been delivered successfully!</span>";
+      formMsg.innerHTML = "🎉 Your message has been sent!";
       formMsg.style.color = "#22c55e";
       contactForm.reset();
+      grecaptcha.reset(); // Reset reCAPTCHA for next submission
     } else {
-      formMsg.innerHTML = `❌ <span style='color:#ef4444;'>${result.message}</span>`;
+      formMsg.innerHTML = `❌ ${result.message}`;
+      formMsg.style.color = "#ef4444";
     }
   } catch (error) {
-    formMsg.innerHTML = "❌ <span style='color:#ef4444;'>Oops! Something went wrong. Please try again!</span>";
+    formMsg.innerHTML = "❌ Oops! Something went wrong. Please try again!";
+    formMsg.style.color = "#ef4444";
   }
 });
